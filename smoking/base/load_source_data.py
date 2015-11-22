@@ -1,6 +1,7 @@
 import csv
 from numpy import *
 import time
+import json
 
 def get_csv_dict(URL,get_attribute = None):
     data = list()
@@ -37,3 +38,12 @@ def import_base_data(url,smoke_type):
                 _point_to_id[index_point] = data[0]
                 index_point += 1
     return asarray(_point),_point_to_id
+
+
+def get_json_list(URL,attribute=None):
+    with open(URL) as f_in:
+        data = json.load(f_in)
+    if attribute:
+        return data[attribute]
+    else:
+        return data
